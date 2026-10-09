@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+/* ===================== DIZAJN TOKENI ===================== */
+:root{
+    --asfalt: #1B1B1D;
+    --asfalt-svjetliji: #2B2B2E;
+    --kamen: #5B5B61;
+    --magla: #F3F1EC;
+    --bijela: #FFFFFF;
+    --amber: #E8923C;
+    --amber-tamniji: #C97527;
+    --tirkiz: #1F4B4C;
+    --zelena: #3F7D5C;
+    --crvena: #B5483D;
+    --zuta: #D9A441;
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --radijus: 6px;
+    --sjenka: 0 8px 24px rgba(27,27,29,0.10);
+    --sjenka-jaka: 0 16px 40px rgba(27,27,29,0.18);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+    font-family: var(--font-body);
+    color: var(--asfalt);
+    background: var(--magla);
+    line-height:1.6;
+}
+img{ max-width:100%; display:block; }
+a{ text-decoration:none; color:inherit; }
+ul{ list-style:none; }
+
+h1,h2,h3,h4{
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+    line-height:1.1;
+    text-transform: uppercase;
+}
+h1{ font-size: clamp(2.6rem, 6vw, 4.6rem); }
+h2{ font-size: clamp(1.9rem, 4vw, 2.6rem); }
+h3{ font-size: 1.5rem; }
+
+.kontejner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+:focus-visible{
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===================== DUGMAD ===================== */
+.dugme{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding: 13px 26px;
+    border-radius: var(--radijus);
+    font-weight:600;
+    font-size: 0.95rem;
+    border: 2px solid transparent;
+    cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.dugme-primarno{ background: var(--amber); color: var(--asfalt); }
+.dugme-primarno:hover{ background: var(--amber-tamniji); transform: translateY(-2px); box-shadow: var(--sjenka); }
+.dugme-sekundarno{ background: transparent; border-color: var(--bijela); color: var(--bijela); }
+.dugme-sekundarno:hover{ background: rgba(255,255,255,0.1); }
+.dugme-tamno{ background: var(--asfalt); color:var(--bijela); }
+.dugme-tamno:hover{ background:#000; }
+.dugme-malo{ padding: 9px 18px; font-size:0.85rem; background:var(--amber); color:var(--asfalt); border-radius: var(--radijus); }
+.dugme-obris{ border: 2px solid var(--kamen); color:var(--asfalt); padding:9px 18px; border-radius: var(--radijus); font-size:0.85rem; }
+.dugme-puno{ width:100%; }
+.dugme-opasnost{ background: var(--crvena); color:var(--bijela); }
+.dugme:disabled{ opacity:0.5; cursor:not-allowed; transform:none; }
+
+/* ===================== HEADER / NAV ===================== */
+.sajt-header{
+    background: var(--asfalt);
+    position: sticky; top:0; z-index: 100;
+    border-bottom: 3px dashed var(--amber);
+}
+.sajt-header-unutra{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 24px;
+}
+.logo{
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--bijela);
+    letter-spacing: 1px;
+}
+.logo-tacka{ color: var(--amber); }
+.glavna-nav{ display:flex; align-items:center; gap: 28px; }
+.glavna-nav a{
+    color: rgba(255,255,255,0.85);
+    font-weight:500;
+    font-size:0.95rem;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+}
+.glavna-nav a.aktivno, .glavna-nav a:hover{ color: var(--bijela); border-color: var(--amber); }
+.glavna-nav a.dugme,
+.glavna-nav a.dugme-malo,
+.glavna-nav a.dugme-obris{ border:none; color: var(--asfalt); }
+.glavna-nav a.dugme-obris{ color: var(--bijela); border: 2px solid rgba(255,255,255,0.4); }
+.hamburger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.hamburger span{ width:24px; height:2px; background:var(--bijela); display:block; }
+
+/* ===================== HERO ===================== */
+.hero{
+    position:relative;
+    background: linear-gradient(180deg, var(--asfalt) 0%, var(--asfalt-svjetliji) 100%);
+    color: var(--bijela);
+    padding: 90px 0 70px;
+    overflow:hidden;
+}
+.hero::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:38px;
+    height:4px;
+    background: repeating-linear-gradient(90deg, var(--amber) 0 36px, transparent 36px 64px);
+    opacity:0.5;
+}
+.hero-sadrzaj{ max-width: 640px; position:relative; z-index:2; }
+.hero-eyebrow{
+    display:inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+}
+.hero p.lid{ font-size:1.15rem; color: rgba(255,255,255,0.8); margin: 18px 0 32px; max-width: 520px; }
+.hero-dugmad{ display:flex; gap:14px; flex-wrap:wrap; }
+
+/* Brza pretraga forma u herou */
+.brza-pretraga{
+    background: var(--bijela);
+    border-radius: var(--radijus);
+    padding: 22px;
+    margin-top: 48px;
+    box-shadow: var(--sjenka-jaka);
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 16px;
+    position:relative; z-index:2;
+}
+
+/* ===================== FORME ===================== */
+.polje{ display:flex; flex-direction:column; gap:6px; }
+.polje label{ font-size:0.8rem; font-weight:600; color: var(--kamen); text-transform:uppercase; letter-spacing:0.4px; }
+input, select, textarea{
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 11px 13px;
+    border: 1.5px solid #DAD6CC;
+    border-radius: var(--radijus);
+    background: var(--bijela);
+    color: var(--asfalt);
+}
+input:focus, select:focus, textarea:focus{ border-color: var(--amber); outline:none; }
+textarea{ resize: vertical; min-height: 90px; }
+
+.forma-karta{
+    background: var(--bijela);
+    max-width: 460px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: var(--radijus);
+    box-shadow: var(--sjenka);
+}
+.forma-karta h1{ font-size:2.2rem; margin-bottom: 8px; }
+.forma-podnaslov{ color: var(--kamen); margin-bottom: 28px; }
+.forma-karta form{ display:flex; flex-direction:column; gap:18px; }
+.forma-footer-link{ margin-top:20px; text-align:center; color: var(--kamen); font-size:0.9rem; }
+.forma-footer-link a{ color: var(--amber-tamniji); font-weight:600; }
+
+/* ===================== PORUKE (FLASH) ===================== */
+.poruka{
+    padding: 14px 18px;
+    border-radius: var(--radijus);
+    margin-bottom: 18px;
+    font-size: 0.92rem;
+    font-weight:500;
+}
+.poruka-uspjeh{ background: #E4F3EA; color: var(--zelena); border:1px solid #BFE3CD; }
+.poruka-greska{ background: #FBEAE8; color: var(--crvena); border:1px solid #F3C9C4; }
+
+/* ===================== SEKCIJE / OPŠTE ===================== */
+section{ padding: 70px 0; }
+.sekcija-naslov{ text-align:center; max-width:620px; margin: 0 auto 50px; }
+.sekcija-naslov .eyebrow{
+    font-family: var(--font-mono); font-size:0.8rem; letter-spacing:2px;
+    color: var(--amber-tamniji); text-transform:uppercase; display:block; margin-bottom:10px;
+}
+.sekcija-naslov p{ color: var(--kamen); margin-top:12px; }
+
+/* Kako funkcioniše - koraci sa "km oznakama" (legitiman redoslijed procesa) */
+.koraci{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:30px; }
+.korak{ text-align:center; padding: 0 10px; }
+.korak-oznaka{
+    width:64px; height:64px; border-radius:50%;
+    background: var(--asfalt); color: var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-weight:700; font-size:1.1rem;
+    margin: 0 auto 18px;
+    border: 3px solid var(--amber);
+}
+.korak h3{ font-size:1.2rem; margin-bottom:8px; }
+.korak p{ color: var(--kamen); font-size:0.92rem; }
+
+/* ===================== KARTICE VOZILA ===================== */
+.filter-traka{
+    background: var(--bijela);
+    border-radius: var(--radijus);
+    padding: 20px;
+    box-shadow: var(--sjenka);
+    display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end;
+    margin-bottom: 40px;
+}
+.filter-traka .polje{ flex:1; min-width:160px; }
+
+.mreza-vozila{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 28px;
+}
+.kartica-vozila{
+    background: var(--bijela);
+    border-radius: var(--radijus);
+    overflow:hidden;
+    box-shadow: var(--sjenka);
+    transition: transform .18s ease, box-shadow .18s ease;
+    display:flex; flex-direction:column;
+}
+.kartica-vozila:hover{ transform: translateY(-4px); box-shadow: var(--sjenka-jaka); }
+.kartica-vozila-slika{ position:relative; aspect-ratio: 16/10; background: var(--magla); overflow:hidden; }
+.kartica-vozila-slika img{ width:100%; height:100%; object-fit:cover; }
+.kartica-kategorija{
+    position:absolute; top:12px; left:12px;
+    background: var(--asfalt); color: var(--bijela);
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.5px;
+    padding: 5px 10px; border-radius: 100px;
+}
+.kartica-vozila-tijelo{ padding: 20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.kartica-vozila-tijelo h3{ font-size:1.35rem; }
+.specifikacije{ display:flex; flex-wrap:wrap; gap: 10px 16px; font-size:0.85rem; color: var(--kamen); }
+.specifikacije span{ display:flex; align-items:center; gap:5px; }
+.kartica-vozila-dno{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:auto; padding-top:14px; border-top: 1px dashed #E3DFD3;
+}
+/* "tablica" stil cijene - signature element */
+.cijena-tablica{
+    font-family: var(--font-mono);
+    font-weight:700;
+    background: var(--asfalt);
+    color: var(--bijela);
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    border: 2px solid var(--amber);
+}
+.cijena-tablica small{ font-weight:500; opacity:0.7; font-size:0.7rem; text-transform:uppercase; margin-left:4px; }
+
+.prazno-stanje{ text-align:center; padding: 60px 20px; color: var(--kamen); }
+
+/* ===================== DETALJI VOZILA / REZERVACIJA ===================== */
+.detalji-raspored{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 44px; align-items:flex-start;
+}
+.detalji-slika{ border-radius: var(--radijus); overflow:hidden; box-shadow: var(--sjenka); }
+.detalji-info h1{ font-size: 2.4rem; }
+.detalji-info .specifikacije{ margin: 18px 0; font-size:0.95rem; }
+.detalji-opis{ color: var(--kamen); margin-bottom: 24px; }
+
+.karta-rezervacije{
+    background: var(--bijela);
+    border-radius: var(--radijus);
+    padding: 28px;
+    box-shadow: var(--sjenka);
+    position: sticky; top: 110px;
+}
+.karta-rezervacije .cijena-veca{ font-family: var(--font-mono); font-size:1.8rem; font-weight:700; }
+.karta-rezervacije .cijena-veca span{ font-size:0.95rem; font-weight:500; color: var(--kamen); }
+.razdvaja{ border:none; border-top: 1px dashed #E3DFD3; margin: 18px 0; }
+.ukupno-red{ display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; margin-top:10px; }
+
+/* ===================== TABELE (moje rezervacije / admin) ===================== */
+.tabela-wrap{ background: var(--bijela); border-radius: var(--radijus); box-shadow: var(--sjenka); overflow:auto; }
+table{ width:100%; border-collapse:collapse; min-width: 640px; }
+th, td{ text-align:left; padding: 14px 18px; border-bottom: 1px solid #EFEBE0; font-size:0.92rem; }
+th{ background: var(--magla); text-transform:uppercase; font-size:0.75rem; letter-spacing:0.5px; color: var(--kamen); }
+tr:last-child td{ border-bottom:none; }
+
+.bedz{ display:inline-block; padding: 5px 12px; border-radius:100px; font-size:0.78rem; font-weight:700; text-transform:uppercase; }
+.bedz-zuti{ background:#FBF1DD; color:#9A7416; }
+.bedz-zeleni{ background:#E4F3EA; color: var(--zelena); }
+.bedz-crveni{ background:#FBEAE8; color: var(--crvena); }
+.bedz-sivi{ background:#EDEBE6; color: var(--kamen); }
+
+/* ===================== FOOTER ===================== */
+.sajt-footer{ background: var(--asfalt); color: rgba(255,255,255,0.85); padding-top: 60px; }
+.footer-unutra{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+.footer-kolona h4{ font-family:var(--font-body); text-transform:uppercase; font-size:0.85rem; letter-spacing:1px; color: var(--amber); margin-bottom:14px; }
+.footer-kolona p{ font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+.footer-kolona a{ display:block; font-size:0.9rem; color: rgba(255,255,255,0.75); padding: 4px 0; }
+.logo-footer{ margin-bottom: 14px; }
+.footer-dno{
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 24px; font-size:0.8rem; color: rgba(255,255,255,0.5);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 880px){
+    .glavna-nav{
+        position:absolute; top:100%; left:0; right:0;
+        background: var(--asfalt); flex-direction:column; align-items:flex-start;
+        padding: 20px 24px; gap:16px;
+        display:none;
+    }
+    .glavna-nav.otvoreno{ display:flex; }
+    .hamburger{ display:flex; }
+    .brza-pretraga{ grid-template-columns: 1fr; }
+    .detalji-raspored{ grid-template-columns: 1fr; }
+    .karta-rezervacije{ position:static; }
+    .footer-unutra{ grid-template-columns: 1fr; }
+}
